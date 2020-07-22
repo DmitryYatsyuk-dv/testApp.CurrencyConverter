@@ -8,13 +8,9 @@
 
 import UIKit
 
-/*
- <NumCode>974</NumCode>
- <CharCode>BYR</CharCode>
- <Nominal>1000</Nominal>
- <Name>Белорусских рублей</Name>
- <Value>18,4290</Value>
-*/
+var currentCurrency: Currency?
+var currentCharacters: String = ""
+
 class Currency {
     
     var NumCode: String?
@@ -30,10 +26,9 @@ class Currency {
 
 }
 
-
 class Model: NSObject {
 
-    static let sharedInstance = Model()
+    static let shared = Model()
     
     var currencies: [Currency] = []
     
@@ -42,23 +37,69 @@ class Model: NSObject {
                                                        FileManager.SearchPathDomainMask.userDomainMask,
                                                        true)[0] + "/data.xml"
          
-        print(path)
+        if FileManager.default.fileExists(atPath: path) {
+            return path
+        }
         
-        return ""
+        let bundlePath = Bundle.main.path(forResource: "data", ofType: "xml") ?? "Error"
+        return bundlePath
     }
     
-    var urlForXML: URL? {
-        return nil
+    var urlForXML: URL {
+        return URL(fileURLWithPath: pathForXML)
     }
     
     // Load data XML <- cbr.ru & save in app catalog
     func loadXMLData(data: Data) {
-        <#function body#>
     }
     
     // parse XML & added in array currencies, send notification to the app^ that the data has been updated
     func parseXML() {
-        <#function body#>
+        let parser = XMLParser(contentsOf: urlForXML)
+        parser?.delegate = self
+        parser?.parse()
+        
+        print(currencies)
+    }
+}
+
+//MARK: Extn: XMLParserDelegate
+extension Model: XMLParserDelegate {
+    
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        
+        if elementName == "Valute" {
+            currentCurrency = Currency()
+        }
+    }
+
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        currentCharacters = string
+    }
+    
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        
+        if elementName == "NumCode" {
+            currentCurrency?.NumCode = currentCharacters
+        }
+        if elementName == "CharCode" {
+            currentCurrency?.CharCode = currentCharacters
+        }
+        if elementName == "Nominal" {
+            currentCurrency?.Nominal = currentCharacters
+            currentCurrency?.nominalDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
+        }
+        if elementName == "Name" {
+            currentCurrency?.Name = currentCharacters
+        }
+        if elementName == "Value" {
+            currentCurrency?.Value = currentCharacters
+            currentCurrency?.valueDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
+        }
+        if elementName == "Valute" {
+//            guard let current = currentCurrency else { return }
+            currencies.append(currentCurrency!)
+        }
     }
     
 }
