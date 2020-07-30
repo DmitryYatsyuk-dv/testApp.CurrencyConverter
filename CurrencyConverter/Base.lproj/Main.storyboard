@@ -64,11 +64,63 @@
                             <outlet property="delegate" destination="eVe-JD-D0v" id="heS-7L-1Uo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Rates" id="xeS-L4-qFa"/>
+                    <navigationItem key="navigationItem" title="Rates" id="xeS-L4-qFa">
+                        <barButtonItem key="leftBarButtonItem" image="gear" catalog="system" id="ArO-gi-ICJ">
+                            <connections>
+                                <segue destination="tPJ-3x-cRW" kind="presentation" modalTransitionStyle="coverVertical" id="EXT-OQ-Av8"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="oXN-Ev-xWk"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gZM-pi-Zcq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="886.95652173913049" y="97.767857142857139"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ovN-6K-Pqm">
+            <objects>
+                <viewController id="0Dv-J4-BNN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kEO-Kc-1sV">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="9vt-ZK-F0b">
+                                <rect key="frame" x="0.0" y="111" width="414" height="354"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="B3a-Vb-bL0"/>
+                                    <constraint firstAttribute="height" constant="354" id="qpp-9O-cGF"/>
+                                </constraints>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17W-R8-A9A">
+                                <rect key="frame" x="125" y="475" width="164" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="gTq-x4-xQo"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="164" id="kuP-Dg-hKx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <state key="normal" title="Exchange rates">
+                                    <color key="titleColor" red="0.049733634729999997" green="0.050226046949999999" blue="0.050226046949999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9vt-ZK-F0b" firstAttribute="top" secondItem="cb7-qR-PNj" secondAttribute="top" constant="55" id="6IB-44-rOH"/>
+                            <constraint firstItem="17W-R8-A9A" firstAttribute="centerX" secondItem="kEO-Kc-1sV" secondAttribute="centerX" id="7Rn-kM-TgM"/>
+                            <constraint firstItem="9vt-ZK-F0b" firstAttribute="trailing" secondItem="cb7-qR-PNj" secondAttribute="trailing" id="A1d-2S-q0K"/>
+                            <constraint firstItem="17W-R8-A9A" firstAttribute="top" secondItem="9vt-ZK-F0b" secondAttribute="bottom" constant="10" id="YgS-bf-aj5"/>
+                            <constraint firstItem="9vt-ZK-F0b" firstAttribute="leading" secondItem="cb7-qR-PNj" secondAttribute="leading" id="neP-AW-ewt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cb7-qR-PNj"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="KSB-Gd-QCa">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NtJ-fO-ZjW"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZpQ-zb-eLb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1683" y="121"/>
         </scene>
         <!--Converter-->
         <scene sceneID="tEU-oc-Wso">
@@ -124,9 +176,28 @@
             </objects>
             <point key="canvasLocation" x="-18.840579710144929" y="752.67857142857144"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VpQ-f1-rDB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tPJ-3x-cRW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="52G-2j-Bet">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="0Dv-J4-BNN" kind="relationship" relationship="rootViewController" id="hzn-sn-9oG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wiK-3B-BVk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1683" y="-569"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.right.arrow.left.square" catalog="system" width="128" height="114"/>
         <image name="coloncurrencysign.square" catalog="system" width="128" height="114"/>
+        <image name="gear" catalog="system" width="128" height="119"/>
     </resources>
 </document>
