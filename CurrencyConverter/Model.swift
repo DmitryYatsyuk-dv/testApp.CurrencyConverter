@@ -23,11 +23,11 @@ class Currency {
     
     var Value: String?
     var valueDouble: Double?
-
+    
 }
 
 class Model: NSObject {
-
+    
     static let shared = Model()
     
     var currencies: [Currency] = []
@@ -36,7 +36,7 @@ class Model: NSObject {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
                                                        FileManager.SearchPathDomainMask.userDomainMask,
                                                        true)[0] + "/data.xml"
-         
+        
         if FileManager.default.fileExists(atPath: path) {
             return path
         }
@@ -50,11 +50,47 @@ class Model: NSObject {
     }
     
     // Load data XML <- cbr.ru & save in app catalog
-    func loadXMLData(data: Data) {
+    // http://www.cbr.ru/scripts/XML_daily.asp?
+    
+    func loadXMLData(date: Date?) {
+        
+        var strURL = "http://www.cbr.ru/scripts/XML_daily.asp?"
+        
+        if date != nil {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/mm/yyyy"
+            strURL = strURL + dateFormatter.string(from: date!)
+        }
+        
+        guard let url = URL(string: strURL) else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            
+            if error == nil {
+                let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
+                                                               FileManager.SearchPathDomainMask.userDomainMask,
+                                                               true)[0] + "/data.xml"
+                let urlForSave = URL(fileURLWithPath: path)
+                
+                do {
+                    try data?.write(to: urlForSave)
+                    print(path)
+                } catch {
+                    print("Error save data: \(error.localizedDescription)")
+                }
+                
+            } else {
+                let error = error ?? "" as! Error
+                print("\(error.localizedDescription), Error func_loadXMLData")
+            }
+        }
+        
+        task.resume()
     }
     
     // parse XML & added in array currencies, send notification to the app^ that the data has been updated
     func parseXML() {
+        currencies = []
         let parser = XMLParser(contentsOf: urlForXML)
         parser?.delegate = self
         parser?.parse()
@@ -72,7 +108,7 @@ extension Model: XMLParserDelegate {
             currentCurrency = Currency()
         }
     }
-
+    
     func parser(_ parser: XMLParser, foundCharacters string: String) {
         currentCharacters = string
     }
@@ -97,7 +133,7 @@ extension Model: XMLParserDelegate {
             currentCurrency?.valueDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
         }
         if elementName == "Valute" {
-//            guard let current = currentCurrency else { return }
+            //            guard let current = currentCurrency else { return }
             currencies.append(currentCurrency!)
         }
     }
