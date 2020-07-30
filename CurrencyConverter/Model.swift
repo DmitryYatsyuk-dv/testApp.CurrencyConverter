@@ -8,6 +8,7 @@
 
 import UIKit
 
+//MARK: Variables
 var currentCurrency: Currency?
 var currentCharacters: String = ""
 
@@ -31,6 +32,7 @@ class Model: NSObject {
     static let shared = Model()
     
     var currencies: [Currency] = []
+    var currentDate: String = ""
     
     var pathForXML: String {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
@@ -49,9 +51,9 @@ class Model: NSObject {
         return URL(fileURLWithPath: pathForXML)
     }
     
+    //MARK: LoadXMLData
     // Load data XML <- cbr.ru & save in app catalog
     // http://www.cbr.ru/scripts/XML_daily.asp?
-    
     func loadXMLData(date: Date?) {
         
         var strURL = "http://www.cbr.ru/scripts/XML_daily.asp?"
@@ -74,7 +76,9 @@ class Model: NSObject {
                 
                 do {
                     try data?.write(to: urlForSave)
-                    print(path)
+                    print("File downloaded")
+//                    print(path)
+                    self.parseXML()
                 } catch {
                     print("Error save data: \(error.localizedDescription)")
                 }
@@ -88,6 +92,7 @@ class Model: NSObject {
         task.resume()
     }
     
+    //MARK: ParseXML
     // parse XML & added in array currencies, send notification to the app^ that the data has been updated
     func parseXML() {
         currencies = []
@@ -95,7 +100,10 @@ class Model: NSObject {
         parser?.delegate = self
         parser?.parse()
         
-        print(currencies)
+        print("Data updated")
+        
+        NotificationCenter.default.post(name:
+            NSNotification.Name(rawValue: "updateData"), object: self)
     }
 }
 
@@ -103,6 +111,14 @@ class Model: NSObject {
 extension Model: XMLParserDelegate {
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
+        
+        if elementName == "ValCurs" {
+            
+            if let currentDateStr = attributeDict[""] {
+                currentDate = currentDateStr
+            }
+            
+        }
         
         if elementName == "Valute" {
             currentCurrency = Currency()
