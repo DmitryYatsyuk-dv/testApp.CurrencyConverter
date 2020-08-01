@@ -142,6 +142,15 @@ class Model: NSObject {
         print("Data updated")
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshData"), object: self)
+        
+        for c in currencies {
+            if c.CharCode == fromCurrency.CharCode {
+                fromCurrency = c
+            }
+            if c.CharCode == toCurrency.CharCode {
+                toCurrency = c
+            }
+        }
     }
 }
 
