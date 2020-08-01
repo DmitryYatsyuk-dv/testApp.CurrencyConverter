@@ -9,6 +9,7 @@
 import UIKit
 
 //MARK: Variables
+
 var currentCurrency: Currency?
 var currentCharacters: String = ""
 
@@ -51,16 +52,17 @@ class Model: NSObject {
         return URL(fileURLWithPath: pathForXML)
     }
     
-    //MARK: LoadXMLData
+    //MARK: LoadXMLFile
     // Load data XML <- cbr.ru & save in app catalog
     // http://www.cbr.ru/scripts/XML_daily.asp?
-    func loadXMLData(date: Date?) {
+    
+    func loadXMLFile(date: Date?) {
         
-        var strURL = "http://www.cbr.ru/scripts/XML_daily.asp?"
+        var strURL = "http://www.cbr.ru/scripts/XML_daily.asp?date_req="
         
         if date != nil {
             let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/mm/yyyy"
+            dateFormatter.dateFormat = "dd/MM/yyyy"
             strURL = strURL + dateFormatter.string(from: date!)
         }
         
@@ -77,8 +79,8 @@ class Model: NSObject {
                 do {
                     try data?.write(to: urlForSave)
                     print("File downloaded")
-//                    print(path)
                     self.parseXML()
+                    
                 } catch {
                     print("Error save data: \(error.localizedDescription)")
                 }
@@ -94,16 +96,15 @@ class Model: NSObject {
     
     //MARK: ParseXML
     // parse XML & added in array currencies, send notification to the app^ that the data has been updated
+    
     func parseXML() {
         currencies = []
         let parser = XMLParser(contentsOf: urlForXML)
         parser?.delegate = self
         parser?.parse()
-        
         print("Data updated")
         
-        NotificationCenter.default.post(name:
-            NSNotification.Name(rawValue: "updateData"), object: self)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RefreshData"), object: self)
     }
 }
 
@@ -114,7 +115,7 @@ extension Model: XMLParserDelegate {
         
         if elementName == "ValCurs" {
             
-            if let currentDateStr = attributeDict[""] {
+            if let currentDateStr = attributeDict["Date"] {
                 currentDate = currentDateStr
             }
             
@@ -149,7 +150,7 @@ extension Model: XMLParserDelegate {
             currentCurrency?.valueDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
         }
         if elementName == "Valute" {
-            //            guard let current = currentCurrency else { return }
+            
             currencies.append(currentCurrency!)
         }
     }

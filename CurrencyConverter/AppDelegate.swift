@@ -15,8 +15,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        Model.shared.loadXMLFile(date: nil)
         Model.shared.parseXML()
-        Model.shared.loadXMLData(date: nil)
         
         return true
     }
