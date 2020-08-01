@@ -14,6 +14,7 @@
 		32448B3F24C2121F00850141 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32448B3D24C2121F00850141 /* LaunchScreen.storyboard */; };
 		32448B4724C2125A00850141 /* data.xml in Resources */ = {isa = PBXBuildFile; fileRef = 32448B4624C2125A00850141 /* data.xml */; };
 		32448B4924C2129800850141 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32448B4824C2129800850141 /* Model.swift */; };
+		32C103AD24D5C3B800F7EFED /* ConverterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C103AC24D5C3B800F7EFED /* ConverterController.swift */; };
 		32DABA7824D38D2800675640 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DABA7724D38D2800675640 /* SettingsViewController.swift */; };
 		32F1142F24CDBE2400FAF269 /* RatesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F1142E24CDBE2400FAF269 /* RatesController.swift */; };
 /* End PBXBuildFile section */
@@ -28,6 +29,7 @@
 		32448B4024C2121F00850141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32448B4624C2125A00850141 /* data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = data.xml; sourceTree = "<group>"; };
 		32448B4824C2129800850141 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		32C103AC24D5C3B800F7EFED /* ConverterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterController.swift; sourceTree = "<group>"; };
 		32DABA7724D38D2800675640 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		32F1142E24CDBE2400FAF269 /* RatesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +69,7 @@
 				32448B4824C2129800850141 /* Model.swift */,
 				32DABA7724D38D2800675640 /* SettingsViewController.swift */,
 				32F1142E24CDBE2400FAF269 /* RatesController.swift */,
+				32C103AC24D5C3B800F7EFED /* ConverterController.swift */,
 				32448B3824C2121E00850141 /* Main.storyboard */,
 				32448B3B24C2121F00850141 /* Assets.xcassets */,
 				32448B3D24C2121F00850141 /* LaunchScreen.storyboard */,
@@ -152,6 +155,7 @@
 				32448B3524C2121E00850141 /* SceneDelegate.swift in Sources */,
 				32448B4924C2129800850141 /* Model.swift in Sources */,
 				32DABA7824D38D2800675640 /* SettingsViewController.swift in Sources */,
+				32C103AD24D5C3B800F7EFED /* ConverterController.swift in Sources */,
 				32F1142F24CDBE2400FAF269 /* RatesController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

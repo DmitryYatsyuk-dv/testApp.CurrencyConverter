@@ -26,6 +26,17 @@ class Currency {
     var Value: String?
     var valueDouble: Double?
     
+    class func rouble() -> Currency {
+        let rouble = Currency()
+        rouble.CharCode = "RUR"
+        rouble.Name = "Российский рубль"
+        rouble.Nominal = "1"
+        rouble.nominalDouble = 1
+        rouble.Value = "1"
+        rouble.valueDouble = 1
+        return rouble
+    }
+    
 }
 
 class Model: NSObject {
@@ -34,6 +45,19 @@ class Model: NSObject {
     
     var currencies: [Currency] = []
     var currentDate: String = ""
+    
+    var fromCurrency: Currency = Currency.rouble()
+    var toCurrency: Currency = Currency.rouble()
+    
+    func converter(amount: Double?) -> String {
+        if amount == nil {
+            return ""
+        }
+        
+        let logicFormula = ((fromCurrency.nominalDouble! * fromCurrency.valueDouble!) / (toCurrency.nominalDouble! * toCurrency.valueDouble!) * amount!)
+        
+        return String(logicFormula)
+    }
     
     var pathForXML: String {
         let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
@@ -70,6 +94,8 @@ class Model: NSObject {
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
             
+            var errorData: String?
+            
             if error == nil {
                 let path = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.libraryDirectory,
                                                                FileManager.SearchPathDomainMask.userDomainMask,
@@ -83,13 +109,24 @@ class Model: NSObject {
                     
                 } catch {
                     print("Error save data: \(error.localizedDescription)")
+                    errorData = error.localizedDescription
+
                 }
                 
             } else {
                 let error = error ?? "" as! Error
-                print("\(error.localizedDescription), Error func_loadXMLData")
+                print("\(error.localizedDescription), Error loadXMLData")
+                errorData = error.localizedDescription
+               
             }
+            if let errorData = errorData {
+                NotificationCenter.default.post(name: NSNotification.Name("Error loading XML"), object: self, userInfo: ["ErrorName": errorData])
+            }
+            
+            
         }
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "StartLoadingXML"), object: self)
         
         task.resume()
     }
@@ -98,7 +135,7 @@ class Model: NSObject {
     // parse XML & added in array currencies, send notification to the app^ that the data has been updated
     
     func parseXML() {
-        currencies = []
+        currencies = [Currency.rouble()]
         let parser = XMLParser(contentsOf: urlForXML)
         parser?.delegate = self
         parser?.parse()
