@@ -72,20 +72,44 @@
 			children = (
 				32448B3224C2121E00850141 /* AppDelegate.swift */,
 				32448B3424C2121E00850141 /* SceneDelegate.swift */,
-				32448B4824C2129800850141 /* Model.swift */,
-				32DABA7724D38D2800675640 /* SettingsViewController.swift */,
-				32F1142E24CDBE2400FAF269 /* RatesController.swift */,
-				32C103AC24D5C3B800F7EFED /* ConverterController.swift */,
-				32C103AE24D5DFA200F7EFED /* SelectCurrencyController.swift */,
-				32448B3824C2121E00850141 /* Main.storyboard */,
-				3285F7E624F817B300D22DCF /* CourseCell.swift */,
-				32490B2224FD3B80007C5EB7 /* CourseSelectedCell.swift */,
+				3290BBB324FD973E00DF4AD5 /* Model */,
+				3290BBB224FD971A00DF4AD5 /* Controllers */,
+				3290BBB424FD975200DF4AD5 /* View */,
 				32448B3B24C2121F00850141 /* Assets.xcassets */,
-				32448B3D24C2121F00850141 /* LaunchScreen.storyboard */,
 				32448B4024C2121F00850141 /* Info.plist */,
 				32448B4624C2125A00850141 /* data.xml */,
 			);
 			path = CurrencyConverter;
+			sourceTree = "<group>";
+		};
+		3290BBB224FD971A00DF4AD5 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				32DABA7724D38D2800675640 /* SettingsViewController.swift */,
+				32F1142E24CDBE2400FAF269 /* RatesController.swift */,
+				32C103AC24D5C3B800F7EFED /* ConverterController.swift */,
+				32C103AE24D5DFA200F7EFED /* SelectCurrencyController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3290BBB324FD973E00DF4AD5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				32448B4824C2129800850141 /* Model.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3290BBB424FD975200DF4AD5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				32448B3824C2121E00850141 /* Main.storyboard */,
+				3285F7E624F817B300D22DCF /* CourseCell.swift */,
+				32490B2224FD3B80007C5EB7 /* CourseSelectedCell.swift */,
+				32448B3D24C2121F00850141 /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

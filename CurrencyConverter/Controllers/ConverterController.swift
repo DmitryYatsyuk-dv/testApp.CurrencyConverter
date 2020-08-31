@@ -11,7 +11,6 @@ import UIKit
 class ConverterController: UIViewController {
     
     //MARK: IBOutlets
-    
     @IBOutlet weak var labelRateForDate: UILabel!
     @IBOutlet weak var buttonFrom: UIButton!
     @IBOutlet weak var buttonTo: UIButton!
@@ -19,15 +18,13 @@ class ConverterController: UIViewController {
     @IBOutlet weak var textTo: UITextField!
     @IBOutlet weak var buttonDone: UIBarButtonItem!
     
-    
     //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         settingsButton()
         textFrom.delegate = self
-//        setupTapGesture()
+        setupTapGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +35,6 @@ class ConverterController: UIViewController {
     }
     
     //MARK: IBActions
-    
     @IBAction func pushFromAction(_ sender: Any) {
         let navigationC = storyboard?.instantiateViewController(identifier: "SelectedCurrencyID") as! UINavigationController
         navigationC.modalPresentationStyle = .fullScreen
@@ -76,16 +72,16 @@ class ConverterController: UIViewController {
         buttonTo.layer.borderWidth = 0.5
         buttonTo.layer.borderColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 0.9331121575)
     }
-//    fileprivate func setupTapGesture() {
-//        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlehandleTapDismiss)))
-//    }
-//
-//    @objc fileprivate func handlehandleTapDismiss() {
-//        self.view.endEditing(true)
-//    }
+    
+    fileprivate func setupTapGesture() {
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlehandleTapDismiss)))
+    }
+
+    @objc fileprivate func handlehandleTapDismiss() {
+        self.view.endEditing(true)
+    }
     
     func refreshButtons() {
-        
         buttonFrom.setTitle(Model.shared.fromCurrency.CharCode, for: .normal)
         buttonTo.setTitle(Model.shared.toCurrency.CharCode, for: .normal)
     }
@@ -98,6 +94,4 @@ extension ConverterController: UITextFieldDelegate {
         navigationItem.rightBarButtonItem = buttonDone
         return true
     }
-    
-    
 }

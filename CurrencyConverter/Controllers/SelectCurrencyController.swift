@@ -18,14 +18,12 @@ class SelectCurrencyController: UITableViewController {
     //MARK: Variables
     var flagCurrency: FlagCurrencySelected = .from
     
+    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     //MARK: IBActions
-    
     @IBAction func pushCancelAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

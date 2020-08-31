@@ -43,7 +43,6 @@ class Currency {
         rouble.valueDouble = 1
         return rouble
     }
-    
 }
 
 class Model: NSObject {
@@ -61,7 +60,7 @@ class Model: NSObject {
             return ""
         }
         
-        let logicFormula = ((fromCurrency.nominalDouble! * fromCurrency.valueDouble!) / (toCurrency.nominalDouble! * toCurrency.valueDouble!) * amount!)
+        let logicFormula = (Float((fromCurrency.nominalDouble! * fromCurrency.valueDouble!) / (toCurrency.nominalDouble! * toCurrency.valueDouble!) * amount!))
         
         return String(logicFormula)
     }
@@ -117,7 +116,6 @@ class Model: NSObject {
                 } catch {
                     print("Error save data: \(error.localizedDescription)")
                     errorData = error.localizedDescription
-
                 }
                 
             } else {
@@ -129,18 +127,14 @@ class Model: NSObject {
             if let errorData = errorData {
                 NotificationCenter.default.post(name: NSNotification.Name("Error loading XML"), object: self, userInfo: ["ErrorName": errorData])
             }
-            
-            
         }
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "StartLoadingXML"), object: self)
-        
         task.resume()
     }
     
     //MARK: ParseXML
     // parse XML & added in array currencies, send notification to the app^ that the data has been updated
-    
     func parseXML() {
         currencies = [Currency.rouble()]
         let parser = XMLParser(contentsOf: urlForXML)
@@ -171,7 +165,6 @@ extension Model: XMLParserDelegate {
             if let currentDateStr = attributeDict["Date"] {
                 currentDate = currentDateStr
             }
-            
         }
         
         if elementName == "Valute" {
@@ -203,9 +196,7 @@ extension Model: XMLParserDelegate {
             currentCurrency?.valueDouble = Double(currentCharacters.replacingOccurrences(of: ",", with: "."))
         }
         if elementName == "Valute" {
-            
             currencies.append(currentCurrency!)
         }
     }
-    
 }

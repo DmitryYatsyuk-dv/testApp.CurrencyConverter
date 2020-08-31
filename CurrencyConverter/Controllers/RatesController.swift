@@ -10,6 +10,7 @@ import UIKit
 
 class RatesController: UITableViewController {
     
+    //MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,14 +49,12 @@ class RatesController: UITableViewController {
     }
     
     //MARK: IBActions
-    
     @IBAction func pushRefreshAction(_ sender: Any) {
         Model.shared.loadXMLFile(date: nil)
     }
     
     
     // MARK: - Table view data source
-    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -70,10 +69,6 @@ class RatesController: UITableViewController {
         
         let ratesForCell = Model.shared.currencies[indexPath.row]
         cell.initCell(currency: ratesForCell)
-        
-//        cell.textLabel?.text = ratesForCell.Name
-//        cell.detailTextLabel?.text = ratesForCell.Value
-        
         return cell
     }
 }

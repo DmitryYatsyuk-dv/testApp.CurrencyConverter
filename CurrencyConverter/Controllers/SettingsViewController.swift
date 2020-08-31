@@ -10,15 +10,12 @@ import UIKit
 
 class SettingsViewController: UIViewController {
     
-    
     //MARK: IBOutlets
     @IBOutlet weak var datePicker: UIDatePicker!
     
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        
     }
     
     //MARK: IBActions
@@ -30,6 +27,4 @@ class SettingsViewController: UIViewController {
         Model.shared.loadXMLFile(date: datePicker.date)
         dismiss(animated: true)
     }
-    
-    
 }

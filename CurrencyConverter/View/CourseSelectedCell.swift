@@ -1,36 +1,29 @@
 //
-//  CourseCell.swift
+//  CourseSelectedCell.swift
 //  CurrencyConverter
 //
-//  Created by Lucky on 27.08.2020.
+//  Created by Lucky on 31.08.2020.
 //  Copyright © 2020 DmitriyYatsyuk. All rights reserved.
 //
 
 import UIKit
 
-class CourseCell: UITableViewCell {
+class CourseSelectedCell: UITableViewCell {
     
     //MARK: IBOutlets
     @IBOutlet weak var imageFlag: UIImageView!
-    @IBOutlet weak var labelCurrencyName: UILabel!
-    @IBOutlet weak var labelCourse: UILabel!
+    @IBOutlet weak var labelNameCurrencies: UILabel!
     
-    func initCell(currency: Currency) {
+    func initSelectedCell(currency:Currency) {
         imageFlag.image = currency.imageFlag
-        labelCurrencyName.text = currency.Name
-        labelCourse.text = currency.Value
+        labelNameCurrencies.text = currency.Name
     }
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
 }
