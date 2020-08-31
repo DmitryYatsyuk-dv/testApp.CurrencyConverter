@@ -39,9 +39,11 @@ class RatesController: UITableViewController {
                 let barButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(self.pushRefreshAction(_:)))
                 self.navigationItem.rightBarButtonItem = barButtonItem
             }
-            
         }
         navigationItem.title = Model.shared.currentDate
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         Model.shared.loadXMLFile(date: nil)
     }
     
@@ -63,12 +65,14 @@ class RatesController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CourseCell
         //        guard Model.shared.currencies.count > indexPath.row else { return UITableViewCell() }
-        let ratesForCell = Model.shared.currencies[indexPath.row]
         
-        cell.textLabel?.text = ratesForCell.Name
-        cell.detailTextLabel?.text = ratesForCell.Value
+        let ratesForCell = Model.shared.currencies[indexPath.row]
+        cell.initCell(currency: ratesForCell)
+        
+//        cell.textLabel?.text = ratesForCell.Name
+//        cell.detailTextLabel?.text = ratesForCell.Value
         
         return cell
     }

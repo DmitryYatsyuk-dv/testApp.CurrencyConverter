@@ -41,9 +41,10 @@ class SelectCurrencyController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CourseSelectedCell
+        
         let currentCurrency: Currency = Model.shared.currencies[indexPath.row]
-        cell.textLabel?.text = currentCurrency.Name
+        cell.initSelectedCell(currency: currentCurrency)
         
         return cell
     }

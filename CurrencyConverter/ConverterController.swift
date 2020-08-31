@@ -24,6 +24,8 @@ class ConverterController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        settingsButton()
         textFrom.delegate = self
 //        setupTapGesture()
     }
@@ -66,6 +68,14 @@ class ConverterController: UIViewController {
         
     }
     
+    private func settingsButton() {
+        buttonFrom.layer.cornerRadius = 15
+        buttonFrom.layer.borderWidth = 0.5
+        buttonFrom.layer.borderColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 0.9331121575)
+        buttonTo.layer.cornerRadius = 15
+        buttonTo.layer.borderWidth = 0.5
+        buttonTo.layer.borderColor = #colorLiteral(red: 1, green: 0.8, blue: 0, alpha: 0.9331121575)
+    }
 //    fileprivate func setupTapGesture() {
 //        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handlehandleTapDismiss)))
 //    }

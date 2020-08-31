@@ -14,6 +14,8 @@
 		32448B3F24C2121F00850141 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 32448B3D24C2121F00850141 /* LaunchScreen.storyboard */; };
 		32448B4724C2125A00850141 /* data.xml in Resources */ = {isa = PBXBuildFile; fileRef = 32448B4624C2125A00850141 /* data.xml */; };
 		32448B4924C2129800850141 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32448B4824C2129800850141 /* Model.swift */; };
+		32490B2324FD3B80007C5EB7 /* CourseSelectedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32490B2224FD3B80007C5EB7 /* CourseSelectedCell.swift */; };
+		3285F7E724F817B300D22DCF /* CourseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3285F7E624F817B300D22DCF /* CourseCell.swift */; };
 		32C103AD24D5C3B800F7EFED /* ConverterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C103AC24D5C3B800F7EFED /* ConverterController.swift */; };
 		32C103AF24D5DFA200F7EFED /* SelectCurrencyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32C103AE24D5DFA200F7EFED /* SelectCurrencyController.swift */; };
 		32DABA7824D38D2800675640 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32DABA7724D38D2800675640 /* SettingsViewController.swift */; };
@@ -30,6 +32,8 @@
 		32448B4024C2121F00850141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		32448B4624C2125A00850141 /* data.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = data.xml; sourceTree = "<group>"; };
 		32448B4824C2129800850141 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		32490B2224FD3B80007C5EB7 /* CourseSelectedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseSelectedCell.swift; sourceTree = "<group>"; };
+		3285F7E624F817B300D22DCF /* CourseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseCell.swift; sourceTree = "<group>"; };
 		32C103AC24D5C3B800F7EFED /* ConverterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterController.swift; sourceTree = "<group>"; };
 		32C103AE24D5DFA200F7EFED /* SelectCurrencyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectCurrencyController.swift; sourceTree = "<group>"; };
 		32DABA7724D38D2800675640 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 				32C103AC24D5C3B800F7EFED /* ConverterController.swift */,
 				32C103AE24D5DFA200F7EFED /* SelectCurrencyController.swift */,
 				32448B3824C2121E00850141 /* Main.storyboard */,
+				3285F7E624F817B300D22DCF /* CourseCell.swift */,
+				32490B2224FD3B80007C5EB7 /* CourseSelectedCell.swift */,
 				32448B3B24C2121F00850141 /* Assets.xcassets */,
 				32448B3D24C2121F00850141 /* LaunchScreen.storyboard */,
 				32448B4024C2121F00850141 /* Info.plist */,
@@ -156,8 +162,10 @@
 			files = (
 				32448B3324C2121E00850141 /* AppDelegate.swift in Sources */,
 				32C103AF24D5DFA200F7EFED /* SelectCurrencyController.swift in Sources */,
+				32490B2324FD3B80007C5EB7 /* CourseSelectedCell.swift in Sources */,
 				32448B3524C2121E00850141 /* SceneDelegate.swift in Sources */,
 				32448B4924C2129800850141 /* Model.swift in Sources */,
+				3285F7E724F817B300D22DCF /* CourseCell.swift in Sources */,
 				32DABA7824D38D2800675640 /* SettingsViewController.swift in Sources */,
 				32C103AD24D5C3B800F7EFED /* ConverterController.swift in Sources */,
 				32F1142F24CDBE2400FAF269 /* RatesController.swift in Sources */,
